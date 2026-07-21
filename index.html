@@ -70,6 +70,7 @@
 
     .site-nav a { transition: color .2s ease; }
     .site-nav a:hover { color: var(--green); }
+    .site-nav .wordmark { font-size: 1.22em; margin-left: 2px; vertical-align: -0.02em; }
     .header-link { align-items: center; display: inline-flex; gap: 9px; }
     .header-link svg { height: 16px; width: 16px; }
 
@@ -334,7 +335,7 @@
     <nav class="site-nav" aria-label="Main navigation">
       <a href="#product">Product</a>
       <a href="#features">Features</a>
-      <a href="#difference">Why veh.</a>
+      <a href="#difference">Why <span class="wordmark" aria-label="VEH">veh<span class="wordmark-dot" aria-hidden="true">.</span></span></a>
       <a href="#principles">Promise</a>
       <a href="#questions">Questions</a>
     </nav>
