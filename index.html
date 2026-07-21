@@ -6,7 +6,11 @@
   <meta name="color-scheme" content="light">
   <meta name="description" content="VEH remembers where you parked and helps you find your way back.">
   <meta name="theme-color" content="#12352a">
-  <title>VEH — find your way back</title>
+  <link rel="canonical" href="https://veh.app/">
+  <link rel="alternate" hreflang="en" href="https://veh.app/">
+  <link rel="alternate" hreflang="de" href="https://veh.app/de/">
+  <link rel="alternate" hreflang="x-default" href="https://veh.app/">
+  <title>veh - find your way back</title>
   <style>
     :root {
       color-scheme: only light;
@@ -60,7 +64,8 @@
     .features .wordmark .wordmark-dot { color: var(--lime); }
     .section-kicker .wordmark { font-size: 1.32em; margin-left: -7px; }
     .site-nav { display: flex; gap: 26px; }
-    .site-nav a, .header-link {
+    .header-tools { align-items: center; display: flex; gap: 20px; }
+    .site-nav a, .header-link, .lang-switch a {
       color: #46554d;
       font-size: 12px;
       font-weight: 750;
@@ -73,6 +78,10 @@
     .site-nav .wordmark { font-size: 1.22em; margin-left: -2px; vertical-align: -0.02em; }
     .header-link { align-items: center; display: inline-flex; gap: 9px; }
     .header-link svg { height: 16px; width: 16px; }
+    .lang-switch { align-items: center; display: inline-flex; gap: 7px; }
+    .lang-switch a { color: #7a857e; letter-spacing: .06em; transition: color .2s ease; }
+    .lang-switch a:hover, .lang-switch a[aria-current="true"] { color: var(--green); }
+    .lang-switch span { color: #c5ccc6; font-size: 11px; }
 
     .hero {
       display: grid;
@@ -276,6 +285,8 @@
       .site-header { height: 72px; }
       .site-nav { display: none; }
       .header-link { font-size: 11px; }
+      .header-tools { gap: 15px; }
+      .lang-switch a { font-size: 11px; }
       .hero { display: block; }
       .hero-copy { padding: 52px 0 48px; }
       .hero-note { margin-top: 36px; }
@@ -300,6 +311,7 @@
     @media (max-width: 520px) {
       .container { padding: 0 22px; }
       .header-link svg { display: none; }
+      .header-link { display: none; }
       .hero-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
       .hero-copy { padding: 42px 0 38px; }
       .hero-note { margin-top: 31px; }
@@ -328,6 +340,31 @@
 
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
   </style>
+  <script>
+    (function () {
+      try {
+        var key = "veh-language";
+        var path = window.location.pathname;
+        var choice = window.localStorage.getItem(key);
+        var languages = window.navigator.languages || [window.navigator.language || ""];
+        var prefersGerman = languages.some(function (language) {
+          return String(language).toLowerCase().indexOf("de") === 0;
+        });
+
+        if ((path === "/" || path === "/index.html") && (choice === "de" || (!choice && prefersGerman))) {
+          window.location.replace("/de/");
+          return;
+        }
+
+        document.addEventListener("click", function (event) {
+          var link = event.target.closest("[data-lang-choice]");
+          if (link) {
+            window.localStorage.setItem(key, link.getAttribute("data-lang-choice"));
+          }
+        });
+      } catch (error) {}
+    })();
+  </script>
 </head>
 <body>
   <header class="container site-header">
@@ -339,7 +376,14 @@
       <a href="#principles">Promise</a>
       <a href="#questions">Questions</a>
     </nav>
-    <a class="header-link" href="#contact">GET IN TOUCH</a>
+    <div class="header-tools">
+      <div class="lang-switch" aria-label="Language">
+        <a href="/" aria-current="true" data-lang-choice="en">EN</a>
+        <span aria-hidden="true">/</span>
+        <a href="/de/" data-lang-choice="de">DE</a>
+      </div>
+      <a class="header-link" href="#contact">GET IN TOUCH</a>
+    </div>
   </header>
 
   <main id="top">
