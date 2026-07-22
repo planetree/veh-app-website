@@ -14,23 +14,51 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/" />
   </url>
   <url>
-    <loc>https://veh.app/de/auto-wiederfinden/</loc>
+    <loc>https://veh.app/find-my-car/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veh.app/find-my-car/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/auto-wiederfinden/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/de/auto-wiederfinden/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/find-my-car/" />
+  </url>
+  <url>
+    <loc>https://veh.app/de/auto-wiederfinden/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veh.app/find-my-car/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/auto-wiederfinden/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/find-my-car/" />
+  </url>
+  <url>
+    <loc>https://veh.app/automatic-parking-location/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veh.app/automatic-parking-location/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/parkplatz-automatisch-speichern/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/automatic-parking-location/" />
   </url>
   <url>
     <loc>https://veh.app/de/parkplatz-automatisch-speichern/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veh.app/automatic-parking-location/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/parkplatz-automatisch-speichern/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/de/parkplatz-automatisch-speichern/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/automatic-parking-location/" />
+  </url>
+  <url>
+    <loc>https://veh.app/find-my-bike/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veh.app/find-my-bike/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/fahrrad-wiederfinden/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/find-my-bike/" />
   </url>
   <url>
     <loc>https://veh.app/de/fahrrad-wiederfinden/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veh.app/find-my-bike/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/fahrrad-wiederfinden/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/de/fahrrad-wiederfinden/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/find-my-bike/" />
+  </url>
+  <url>
+    <loc>https://veh.app/how-veh-works/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veh.app/how-veh-works/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/wie-funktioniert-veh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/how-veh-works/" />
   </url>
   <url>
     <loc>https://veh.app/de/wie-funktioniert-veh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veh.app/how-veh-works/" />
     <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/wie-funktioniert-veh/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/de/wie-funktioniert-veh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/how-veh-works/" />
   </url>
 </urlset>
