@@ -260,6 +260,14 @@
     .faq-list details[open] summary::after { content: "−"; }
     .faq-list details p { color: var(--soft-ink); font-size: 14px; line-height: 1.7; margin: -3px 38px 23px 0; max-width: 560px; }
 
+    .topics { background: var(--paper); padding: 8px 0 76px; }
+    .topics-grid { display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); margin-top: 30px; }
+    .topic-link { border-top: 1px solid var(--line); color: var(--ink); display: block; min-height: 150px; padding-top: 20px; }
+    .topic-link span { color: var(--green); display: block; font-size: 10px; font-weight: 800; letter-spacing: .12em; margin-bottom: 18px; text-transform: uppercase; }
+    .topic-link strong { display: block; font-family: Georgia, "Times New Roman", serif; font-size: 25px; font-weight: 400; letter-spacing: -.025em; line-height: 1.1; }
+    .topic-link:hover { border-color: var(--green); }
+    .topic-link:hover strong { color: var(--green); }
+
     .contact { background: var(--paper); padding: 16px 0 76px; }
     .contact-card { background: var(--sand); border-radius: 30px; padding: clamp(42px, 5vw, 76px); text-align: center; }
     .contact-card .section-kicker { border: 0; justify-content: center; padding: 0; }
@@ -275,8 +283,6 @@
     .footer-meta { display: flex; gap: 23px; justify-self: end; }
     .footer-meta span, .footer-meta a { color: var(--soft-ink); font-size: 10px; font-weight: 700; letter-spacing: .055em; text-transform: uppercase; }
     .footer-meta .wordmark { color: var(--ink); font-size: 1.35em; letter-spacing: -.075em; text-transform: lowercase; }
-    .seo-links { align-items: center; display: flex; flex-wrap: wrap; gap: 12px 18px; justify-content: center; padding: 0 0 36px; }
-    .seo-links a { color: var(--soft-ink); font-size: 10px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
 
     @media (max-width: 1050px) {
       .hero { grid-template-columns: 1fr 1fr; }
@@ -307,6 +313,7 @@
       .feature { min-height: 235px; }
       .feature.primary { grid-row: auto; min-height: 450px; }
       .feature-icon { margin-bottom: 36px; }
+      .topics-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { grid-template-columns: 1fr; padding: 30px 0; text-align: center; }
       .footer-inner .brand, .footer-meta { justify-self: center; }
     }
@@ -338,6 +345,8 @@
       .contact-card h2 { margin: 32px auto 20px; }
       .contact-card p { margin-bottom: 28px; }
       .contact-card .button { font-size: 11px; gap: 8px; padding: 17px 18px; }
+      .topics-grid { grid-template-columns: 1fr; }
+      .topic-link { min-height: 118px; }
       .footer-meta { flex-direction: column; gap: 10px; }
     }
 
@@ -493,17 +502,23 @@
       </div>
     </section>
 
+    <section class="topics" aria-labelledby="topics-title">
+      <div class="container">
+        <p class="section-kicker">06 — Weitere Themen</p>
+        <h2 id="topics-title">Hilfreiche Seiten für<br><em>echte Situationen.</em></h2>
+        <div class="topics-grid">
+          <a class="topic-link" href="/de/auto-wiederfinden/"><span>Auto</span><strong>Auto wiederfinden</strong></a>
+          <a class="topic-link" href="/de/parkplatz-automatisch-speichern/"><span>Parken</span><strong>Parkplatz automatisch speichern</strong></a>
+          <a class="topic-link" href="/de/fahrrad-wiederfinden/"><span>Fahrrad</span><strong>Fahrrad wiederfinden</strong></a>
+          <a class="topic-link" href="/de/wie-funktioniert-veh/"><span>Produkt</span><strong>So funktioniert <span class="notranslate" translate="no">veh.</span></strong></a>
+        </div>
+      </div>
+    </section>
+
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="container"><div class="contact-card"><p class="section-kicker">KONTAKT AUFNEHMEN</p><h2 id="contact-title">Sei dabei, wenn<br><em><span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span> startet.</em></h2><p>Die App ist für Android und iOS in Entwicklung, der Early Access öffnet bald. Für Produkt-Updates oder ein Gespräch über das Projekt kannst du eine Nachricht senden.</p><a class="button button-primary" href="mailto:info@veh.app?subject=VEH%20Early%20Access">KONTAKT AUFNEHMEN</a><small>Noch keine Mailingliste. Nur ein direkter Weg zu <span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span></small></div></div>
     </section>
   </main>
-
-  <nav class="container seo-links" aria-label="Weitere Themen">
-    <a href="/de/auto-wiederfinden/">Auto wiederfinden</a>
-    <a href="/de/parkplatz-automatisch-speichern/">Parkplatz automatisch speichern</a>
-    <a href="/de/fahrrad-wiederfinden/">Fahrrad wiederfinden</a>
-    <a href="/de/wie-funktioniert-veh/">So funktioniert <span class="notranslate" translate="no">veh.</span></a>
-  </nav>
 
   <footer><div class="container footer-inner"><a class="brand notranslate" href="#top" aria-label="VEH home" translate="no">veh<span>.</span></a><p>Finde den Weg zurück.</p><div class="footer-meta"><span>© 2026 <span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span></span></div></div></footer>
 </body>
