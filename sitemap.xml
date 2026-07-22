@@ -13,4 +13,24 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/" />
   </url>
+  <url>
+    <loc>https://veh.app/de/auto-wiederfinden/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/auto-wiederfinden/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/de/auto-wiederfinden/" />
+  </url>
+  <url>
+    <loc>https://veh.app/de/parkplatz-automatisch-speichern/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/parkplatz-automatisch-speichern/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/de/parkplatz-automatisch-speichern/" />
+  </url>
+  <url>
+    <loc>https://veh.app/de/fahrrad-wiederfinden/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/fahrrad-wiederfinden/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/de/fahrrad-wiederfinden/" />
+  </url>
+  <url>
+    <loc>https://veh.app/de/wie-funktioniert-veh/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://veh.app/de/wie-funktioniert-veh/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veh.app/de/wie-funktioniert-veh/" />
+  </url>
 </urlset>
