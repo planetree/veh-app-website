@@ -109,22 +109,26 @@
     h1 em, h2 em { color: var(--green); font-weight: 400; }
     .hero-text { color: var(--soft-ink); font-size: 17px; line-height: 1.75; margin: 0; max-width: 475px; }
 
-    .hero-actions { align-items: center; display: flex; gap: 28px; margin-top: 37px; }
+    .hero-actions { align-items: center; display: flex; gap: 14px; margin-top: 34px; }
     .button {
       align-items: center;
+      border: 1px solid transparent;
       border-radius: 999px;
       display: inline-flex;
-      font-size: 12px;
-      font-weight: 800;
-      gap: 15px;
+      font-size: 14px;
+      font-weight: 700;
+      gap: 10px;
       justify-content: center;
-      letter-spacing: .03em;
-      padding: 18px 24px;
-      transition: background .2s ease, transform .2s ease;
+      letter-spacing: .005em;
+      min-height: 48px;
+      padding: 0 24px;
+      transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
     }
 
     .button-primary { background: var(--deep-green); color: #fff; }
     .button-primary:hover { background: var(--green); transform: translateY(-2px); }
+    .button-secondary { background: rgba(255,255,255,.56); border-color: rgba(32,48,39,.18); color: var(--ink); }
+    .button-secondary:hover { background: #fff; border-color: rgba(77,123,89,.38); color: var(--deep-green); transform: translateY(-2px); }
     .button svg { height: 17px; transition: transform .2s ease; width: 17px; }
     .button:hover svg { transform: translateX(3px); }
     .inline-link { border-bottom: 1px solid var(--line); font-size: 12px; font-weight: 750; padding: 8px 0; }
@@ -408,8 +412,8 @@
         <h1 id="hero-title">Your car.<br><em>Right where</em><br>you left it.</h1>
         <p class="hero-text"><span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span> remembers where you parked and helps you find your way back — automatically, quietly, and when you need it.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#contact">Join early access</a>
-          <a class="inline-link" href="#product">See how it works</a>
+          <a class="button button-primary" href="#contact">Get early access</a>
+          <a class="button button-secondary" href="#product">See how it works</a>
         </div>
         <p class="hero-note">An independent project · In development for Android and iOS</p>
       </div>
