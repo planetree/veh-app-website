@@ -563,7 +563,7 @@
           <p>Die App ist für Android und iOS in Entwicklung, der Early Access öffnet bald. Für Produkt-Updates oder ein Gespräch über das Projekt, sende eine Nachricht.</p>
           <button class="button button-primary" type="button" data-contact-toggle aria-expanded="false" aria-controls="contact-form-panel">KONTAKT AUFNEHMEN</button>
           <div class="contact-form-panel" id="contact-form-panel" data-contact-panel hidden>
-            <form class="contact-form" data-contact-form>
+            <form class="contact-form" data-contact-form novalidate>
               <input type="hidden" name="language" value="de">
               <input type="hidden" name="source" value="veh.app deutsche startseite">
               <div class="form-honeypot" aria-hidden="true">
@@ -584,7 +584,7 @@
                 <textarea id="contact-message" name="message" autocomplete="off" required></textarea>
               </div>
               <div class="form-actions">
-                <div class="turnstile-field cf-turnstile" data-sitekey="0x4AAAAAAD_S3zbElEtuZJ8v" data-theme="auto"></div>
+                <div class="turnstile-field cf-turnstile" data-sitekey="0x4AAAAAAD_S3zbElEtuZJ8v" data-theme="auto" data-language="de"></div>
                 <button class="button button-primary" type="submit">ANFRAGE SENDEN</button>
                 <span class="form-status" data-form-status aria-live="polite"></span>
               </div>
@@ -625,7 +625,6 @@
 
         form.addEventListener("submit", function (event) {
           event.preventDefault();
-          setStatus(status, "Wird gesendet...", "");
 
           var formData = new FormData(form);
           var payload = {};
@@ -634,6 +633,15 @@
           });
           payload.turnstileToken = payload["cf-turnstile-response"] || "";
           delete payload["cf-turnstile-response"];
+
+          var validationMessage = validateContactPayload(payload);
+          if (validationMessage) {
+            setStatus(status, validationMessage.message, "error");
+            if (validationMessage.field) validationMessage.field.focus();
+            return;
+          }
+
+          setStatus(status, "Wird gesendet...", "");
 
           if (!payload.turnstileToken) {
             setStatus(status, "Bitte die Sicherheitsprüfung abschließen und erneut versuchen.", "error");
@@ -680,6 +688,31 @@
         } else {
           element.removeAttribute("data-tone");
         }
+      }
+
+      function validateContactPayload(payload) {
+        var nameField = document.getElementById("contact-name");
+        var emailField = document.getElementById("contact-email");
+        var messageField = document.getElementById("contact-message");
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!String(payload.name || "").trim()) {
+          return { message: "Bitte gib deinen Namen ein.", field: nameField };
+        }
+
+        if (!emailPattern.test(String(payload.email || "").trim())) {
+          return { message: "Bitte gib eine gültige E-Mail-Adresse ein.", field: emailField };
+        }
+
+        if (String(payload.message || "").trim().length < 5) {
+          return { message: "Bitte gib eine kurze Nachricht ein.", field: messageField };
+        }
+
+        if (!payload.turnstileToken) {
+          return { message: "Bitte die Sicherheitsprüfung abschließen und erneut versuchen." };
+        }
+
+        return null;
       }
 
       function resetTurnstile(form) {
