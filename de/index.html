@@ -282,7 +282,37 @@
     .contact-card h2 { margin: 22px auto 16px; }
     .contact-card p { color: var(--soft-ink); font-size: 16px; line-height: 1.72; margin: 0 auto 22px; max-width: 590px; }
     .contact-card .button { font-size: 11px; letter-spacing: .14em; padding: 18px 30px; }
+    .contact-card .button:disabled { cursor: wait; opacity: .62; transform: none; }
     .contact-card small { color: #79857d; display: block; font-size: 11px; margin-top: 20px; }
+    .contact-form-panel { margin: 0 auto; max-height: 0; max-width: 650px; opacity: 0; overflow: hidden; transform: translateY(-8px); transition: max-height .7s cubic-bezier(.22,1,.36,1), opacity .35s ease, transform .45s ease; }
+    .contact-form-panel.is-open { opacity: 1; transform: translateY(0); }
+    .contact-form { display: grid; gap: 14px; padding-top: 28px; text-align: left; }
+    .form-row { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+    .form-field { display: grid; gap: 7px; }
+    .form-field label, .platform-label { color: var(--ink); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .form-field input, .form-field textarea {
+      background: rgba(252,251,247,.72);
+      border: 1px solid rgba(20,35,28,.12);
+      border-radius: 15px;
+      color: var(--ink);
+      font: inherit;
+      font-size: 14px;
+      outline: 0;
+      padding: 15px 16px;
+      transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      width: 100%;
+    }
+    .form-field textarea { min-height: 116px; resize: vertical; }
+    .form-field input:focus, .form-field textarea:focus { background: rgba(252,251,247,.94); border-color: rgba(23,74,54,.38); box-shadow: 0 0 0 4px rgba(201,243,109,.18); }
+    .platform-options { display: flex; flex-wrap: wrap; gap: 10px; }
+    .platform-options label { align-items: center; background: rgba(252,251,247,.48); border: 1px solid rgba(20,35,28,.1); border-radius: 999px; cursor: pointer; display: inline-flex; font-size: 13px; font-weight: 700; gap: 8px; padding: 10px 14px; }
+    .platform-options input { accent-color: var(--green); }
+    .form-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 8px; text-align: center; }
+    .turnstile-field { display: flex; justify-content: center; min-height: 65px; width: 100%; }
+    .form-status { color: var(--soft-ink); font-size: 13px; min-height: 20px; width: 100%; }
+    .form-status[data-tone="success"] { color: var(--green); }
+    .form-status[data-tone="error"] { color: #8b342e; }
+    .form-honeypot { display: none; }
 
     footer { border-top: 1px solid var(--line); }
     .footer-inner { align-items: center; display: grid; gap: 18px; grid-template-columns: 1fr auto 1fr; min-height: 112px; }
@@ -355,6 +385,9 @@
       .contact-card h2 { margin: 22px auto 16px; }
       .contact-card p { margin-bottom: 22px; }
       .contact-card .button { font-size: 11px; gap: 8px; padding: 17px 18px; }
+      .form-row { grid-template-columns: 1fr; }
+      .platform-options { display: grid; grid-template-columns: 1fr; }
+      .form-actions { align-items: stretch; flex-direction: column; }
       .topics-grid { grid-template-columns: 1fr; }
       .topic-link { min-height: 0; padding: 12px 0 3px; }
       .footer-meta { flex-direction: column; gap: 10px; }
@@ -527,10 +560,171 @@
     </section>
 
     <section class="contact" id="contact" aria-labelledby="contact-title">
-      <div class="container"><div class="contact-card"><p class="section-kicker">KONTAKT AUFNEHMEN</p><h2 id="contact-title">Sei dabei, wenn<br><em><span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span> startet.</em></h2><p>Die App ist für Android und iOS in Entwicklung, der Early Access öffnet bald. Für Produkt-Updates oder ein Gespräch über das Projekt kannst du eine Nachricht senden.</p><a class="button button-primary" href="mailto:info@veh.app?subject=VEH%20Early%20Access">KONTAKT AUFNEHMEN</a><small>Noch keine Mailingliste. Nur ein direkter Weg zu <span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span></small></div></div>
+      <div class="container">
+        <div class="contact-card">
+          <p class="section-kicker">KONTAKT AUFNEHMEN</p>
+          <h2 id="contact-title">Sei dabei, wenn<br><em><span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span> startet.</em></h2>
+          <p>Die App ist für Android und iOS in Entwicklung, der Early Access öffnet bald. Für Produkt-Updates oder ein Gespräch über das Projekt, sende eine Nachricht.</p>
+          <button class="button button-primary" type="button" data-contact-toggle aria-expanded="false" aria-controls="contact-form-panel">KONTAKT AUFNEHMEN</button>
+          <div class="contact-form-panel" id="contact-form-panel" data-contact-panel hidden>
+            <form class="contact-form" data-contact-form>
+              <input type="hidden" name="language" value="de">
+              <input type="hidden" name="source" value="veh.app deutsche startseite">
+              <div class="form-honeypot" aria-hidden="true">
+                <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="contact-name">Name <span>(optional)</span></label>
+                  <input id="contact-name" name="name" type="text" autocomplete="name">
+                </div>
+                <div class="form-field">
+                  <label for="contact-email">E-Mail-Adresse</label>
+                  <input id="contact-email" name="email" type="email" autocomplete="email" required>
+                </div>
+              </div>
+              <div class="form-field">
+                <span class="platform-label">Plattform</span>
+                <div class="platform-options">
+                  <label><input type="radio" name="platform" value="android" required> Android</label>
+                  <label><input type="radio" name="platform" value="ios"> iOS</label>
+                  <label><input type="radio" name="platform" value="both"> Beide</label>
+                  <label><input type="radio" name="platform" value="unsure"> Noch nicht sicher</label>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="contact-message">Nachricht <span>(optional)</span></label>
+                <textarea id="contact-message" name="message" autocomplete="off"></textarea>
+              </div>
+              <div class="form-actions">
+                <div class="turnstile-field cf-turnstile" data-sitekey="0x4AAAAAAD_S3zbElEtuZJ8v" data-theme="auto"></div>
+                <button class="button button-primary" type="submit">ANFRAGE SENDEN</button>
+                <span class="form-status" data-form-status aria-live="polite"></span>
+              </div>
+            </form>
+          </div>
+          <small>Wir verwenden deine E-Mail nur, um zu <span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span> Early Access zu antworten.</small>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer><div class="container footer-inner"><a class="brand notranslate" href="#top" aria-label="VEH home" translate="no">veh<span>.</span></a><p>Finde den Weg zurück.</p><div class="footer-meta"><span>© 2026 <span class="wordmark notranslate" aria-label="VEH" translate="no">veh<span class="wordmark-dot" aria-hidden="true">.</span></span></span></div></div></footer>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+    (function () {
+      var endpoint = "https://api.veh.app/contact";
+      var forms = document.querySelectorAll("[data-contact-form]");
+      var toggles = document.querySelectorAll("[data-contact-toggle]");
+
+      toggles.forEach(function (toggle) {
+        var panelId = toggle.getAttribute("aria-controls");
+        var panel = panelId ? document.getElementById(panelId) : null;
+        if (!panel) return;
+
+        toggle.addEventListener("click", function () {
+          var isOpen = toggle.getAttribute("aria-expanded") === "true";
+          if (isOpen) {
+            closePanel(toggle, panel);
+          } else {
+            openPanel(toggle, panel);
+          }
+        });
+      });
+
+      forms.forEach(function (form) {
+        var status = form.querySelector("[data-form-status]");
+        var button = form.querySelector("button[type='submit']");
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          setStatus(status, "Wird gesendet...", "");
+
+          var formData = new FormData(form);
+          var payload = {};
+          formData.forEach(function (value, key) {
+            payload[key] = value;
+          });
+          payload.turnstileToken = payload["cf-turnstile-response"] || "";
+          delete payload["cf-turnstile-response"];
+
+          if (!payload.turnstileToken) {
+            setStatus(status, "Bitte die Sicherheitsprüfung abschließen und erneut versuchen.", "error");
+            return;
+          }
+
+          if (button) button.disabled = true;
+
+          fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          })
+            .then(function (response) {
+              if (!response.ok) throw new Error("Request failed");
+              return response.json();
+            })
+            .then(function () {
+              form.reset();
+              resetTurnstile(form);
+              setStatus(status, "Danke. Wir melden uns bei dir.", "success");
+            })
+            .catch(function () {
+              resetTurnstile(form);
+              setStatus(status, "Die Nachricht konnte nicht gesendet werden. Bitte später erneut versuchen.", "error");
+            })
+            .finally(function () {
+              if (button) button.disabled = false;
+            });
+        });
+      });
+
+      function setStatus(element, message, tone) {
+        if (!element) return;
+        element.textContent = message;
+        if (tone) {
+          element.setAttribute("data-tone", tone);
+        } else {
+          element.removeAttribute("data-tone");
+        }
+      }
+
+      function resetTurnstile(form) {
+        if (!window.turnstile) return;
+        var widget = form.querySelector(".cf-turnstile");
+        if (widget) window.turnstile.reset(widget);
+      }
+
+      function openPanel(toggle, panel) {
+        panel.hidden = false;
+        panel.style.maxHeight = "0px";
+        window.requestAnimationFrame(function () {
+          panel.classList.add("is-open");
+          panel.style.maxHeight = panel.scrollHeight + "px";
+          toggle.setAttribute("aria-expanded", "true");
+        });
+      }
+
+      function closePanel(toggle, panel) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        window.requestAnimationFrame(function () {
+          panel.classList.remove("is-open");
+          panel.style.maxHeight = "0px";
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      }
+
+      document.querySelectorAll("[data-contact-panel]").forEach(function (panel) {
+        panel.addEventListener("transitionend", function (event) {
+          if (event.propertyName !== "max-height") return;
+          if (panel.classList.contains("is-open")) {
+            panel.style.maxHeight = "none";
+          } else {
+            panel.hidden = true;
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
